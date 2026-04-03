@@ -1,0 +1,42 @@
+{
+  "growth_queue": [
+    {
+      "vendorCode": "WB-3002",
+      "title": "Resistance Bands Set",
+      "revenue": 760267,
+      "profit": 43824,
+      "stock_cover_days": 48.7,
+      "recommendation": "Scale spend +15% and place reorder for 21-28 days cover"
+    }
+  ],
+  "profit_leakage_queue": [
+    {
+      "vendorCode": "WB-4002",
+      "title": "Organizer Box Set",
+      "revenue": 295214,
+      "profit": 6933,
+      "ads": 56927,
+      "issue": "High DRR above 16%",
+      "recommendation": "Shift budget to exact-match and top-converting clusters"
+    },
+    {
+      "vendorCode": "WB-3001",
+      "title": "Yoga Mat Grip+",
+      "revenue": 762576,
+      "profit": 32241,
+      "ads": 122581,
+      "issue": "High DRR above 16%",
+      "recommendation": "Shift budget to exact-match and top-converting clusters"
+    }
+  ],
+  "dead_stock_queue": [
+    {
+      "vendorCode": "WB-4002",
+      "title": "Organizer Box Set",
+      "stock": 1247,
+      "sales": 0,
+      "issue": "No unit sales for 30 days with positive stock",
+      "recommendation": "Run liquidation bundle and freeze replenishment"
+    }
+  ]
+}

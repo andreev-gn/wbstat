@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply bg-bg text-ink antialiased;
+  font-feature-settings: "tnum";
+}
+
+.card {
+  @apply rounded-xl border border-border bg-card shadow-[0_1px_2px_rgba(15,23,42,0.04)];
+}
+
+.kpi-value {
+  @apply text-2xl font-semibold tracking-tight;
+}
