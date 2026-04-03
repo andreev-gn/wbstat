@@ -38,3 +38,7 @@ curl -sS -o /dev/null -w "%{http_code}\n" -H "Host: wbstat.genaproject.ru" http:
 ```bash
 docker logs -f wbstat-web
 ```
+
+## Git и GitHub
+
+SSH-ключ проекта, привязка к репозиторию и сценарии `pull`/`push`: **`docs/GIT_AND_GITHUB.md`**.

@@ -20,3 +20,7 @@ docker compose up -d
 ## Workspace
 
 Открывать в Cursor: `/srv/workspaces/wbstat.code-workspace`.
+
+## Git / GitHub
+
+Отдельный SSH-ключ на сервере и инструкция по синхронизации: **`docs/GIT_AND_GITHUB.md`**.
