@@ -1,0 +1,19 @@
+{
+  "revenue_7d": 577859,
+  "profit_7d": 25594,
+  "ads_7d": 89561,
+  "margin_pct": 4.4,
+  "drr_pct": 15.5,
+  "stock_risk_count": 0,
+  "dead_stock_count": 1,
+  "slow_stock_count": 6,
+  "sku_count": 8,
+  "loss_sku_count": 0,
+  "no_sales_sku_count": 1,
+  "stock_distribution": {
+    "lt_15": 0,
+    "d15_45": 0,
+    "d46_90": 2,
+    "gt_90": 6
+  }
+}
