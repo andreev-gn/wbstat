@@ -146,7 +146,7 @@ const growthQueue = skuStats
     revenue: s.revenue,
     profit: s.profit,
     stock_cover_days: Number(s.stockCover.toFixed(1)),
-    recommendation: "Scale spend +15% and place reorder for 21-28 days cover",
+    recommendation: "Поднять бюджет РК на 10–15% и согласовать поставку под покрытие 21–28 дн.",
   }));
 
 const profitLeakageQueue = skuStats
@@ -159,8 +159,11 @@ const profitLeakageQueue = skuStats
     revenue: s.revenue,
     profit: s.profit,
     ads: s.ads,
-    issue: s.profit < 0 ? "Negative contribution margin" : "High DRR above 16%",
-    recommendation: s.profit < 0 ? "Pause low-intent campaigns and reprice offer" : "Shift budget to exact-match and top-converting clusters",
+    issue: s.profit < 0 ? "Отрицательная маржа по артикулу" : "Завышенный ДРР (>16%)",
+    recommendation:
+      s.profit < 0
+        ? "Снизить ставки на широкие запросы, пересмотреть цену и состав карточки"
+        : "Перелить бюджет РК на точные запросы и конверсионные кластеры",
   }));
 
 const deadStockQueue = skuStats
@@ -171,8 +174,8 @@ const deadStockQueue = skuStats
     title: s.title,
     stock: s.stock,
     sales: s.units30,
-    issue: "No unit sales for 30 days with positive stock",
-    recommendation: "Run liquidation bundle and freeze replenishment",
+    issue: "Нет продаж 30 дн. при остатке на складе",
+    recommendation: "Распродажа / комплект, закупки по артикулу приостановить",
   }));
 
 const actionQueues = { growth_queue: growthQueue, profit_leakage_queue: profitLeakageQueue, dead_stock_queue: deadStockQueue };
@@ -199,14 +202,20 @@ const revWoW = prevWeek.revenue ? ((lastWeek.revenue - prevWeek.revenue) / prevW
 const profitWoW = prevWeek.profit ? ((lastWeek.profit - prevWeek.profit) / Math.abs(prevWeek.profit)) * 100 : 0;
 
 const aiSummary = {
-  weekly_summary: `WoW revenue ${revWoW >= 0 ? "up" : "down"} ${Math.abs(revWoW).toFixed(1)}%, profit ${profitWoW >= 0 ? "up" : "down"} ${Math.abs(profitWoW).toFixed(1)}%. DRR holds at ${summary.drr_pct.toFixed(1)}%.`,
-  key_risk: deadStockCount > 0 ? `${deadStockCount} SKU with frozen inventory is locking cash and needs immediate liquidation.` : "No critical dead stock, but monitor low-cover SKUs before reorder cutoff.",
-  key_opportunity: growthQueue.length > 0 ? `${growthQueue.length} SKU are ready for controlled scale with healthy cover and DRR below threshold.` : "No SKU fully meets scale criteria; first reduce DRR to unlock growth.",
+  weekly_summary: `К прошлой неделе: выручка ${revWoW >= 0 ? "выше" : "ниже"} на ${Math.abs(revWoW).toFixed(1)}%, прибыль ${profitWoW >= 0 ? "выше" : "ниже"} на ${Math.abs(profitWoW).toFixed(1)}%. ДРР около ${summary.drr_pct.toFixed(1)}%.`,
+  key_risk:
+    deadStockCount > 0
+      ? `Неликвид по ${deadStockCount} SKU удерживает оборотные — нужна распродажа и стоп закупок.`
+      : "Критичного неликвида нет, но проверьте покрытие по артикулам перед заказом поставки.",
+  key_opportunity:
+    growthQueue.length > 0
+      ? `${growthQueue.length} SKU можно аккуратно масштабировать: нормальное покрытие и ДРР ниже порога.`
+      : "Пока нет SKU под масштаб — сначала оптимизируйте ДРР и ставки РК.",
   next_actions: [
-    "Increase budgets on Growth Queue by 10-15% with daily DRR cap.",
-    "Fix leakage SKUs: tighten bids, review pricing, and remove weak search clusters.",
-    "Launch dead stock clearance campaign and stop new purchase orders.",
-    "Approve replenishment plan only for SKUs with 15-45 day cover.",
+    "В зоне роста поднять бюджет РК на 10–15% с дневным лимитом по ДРР.",
+    "По просадке маржи: сузить семантику, усилить минус-слова, пересмотреть цену.",
+    "По неликвиду: акция/комплект, новые закупки по артикулу не открывать.",
+    "Поставки только по SKU с покрытием 15–45 дн.",
   ],
 };
 

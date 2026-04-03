@@ -6,7 +6,7 @@
       "revenue": 760267,
       "profit": 43824,
       "stock_cover_days": 48.7,
-      "recommendation": "Scale spend +15% and place reorder for 21-28 days cover"
+      "recommendation": "Поднять бюджет РК на 10–15% и согласовать поставку под покрытие 21–28 дн."
     }
   ],
   "profit_leakage_queue": [
@@ -16,8 +16,8 @@
       "revenue": 295214,
       "profit": 6933,
       "ads": 56927,
-      "issue": "High DRR above 16%",
-      "recommendation": "Shift budget to exact-match and top-converting clusters"
+      "issue": "Завышенный ДРР (>16%)",
+      "recommendation": "Перелить бюджет РК на точные запросы и конверсионные кластеры"
     },
     {
       "vendorCode": "WB-3001",
@@ -25,8 +25,8 @@
       "revenue": 762576,
       "profit": 32241,
       "ads": 122581,
-      "issue": "High DRR above 16%",
-      "recommendation": "Shift budget to exact-match and top-converting clusters"
+      "issue": "Завышенный ДРР (>16%)",
+      "recommendation": "Перелить бюджет РК на точные запросы и конверсионные кластеры"
     }
   ],
   "dead_stock_queue": [
@@ -35,8 +35,8 @@
       "title": "Organizer Box Set",
       "stock": 1247,
       "sales": 0,
-      "issue": "No unit sales for 30 days with positive stock",
-      "recommendation": "Run liquidation bundle and freeze replenishment"
+      "issue": "Нет продаж 30 дн. при остатке на складе",
+      "recommendation": "Распродажа / комплект, закупки по артикулу приостановить"
     }
   ]
 }

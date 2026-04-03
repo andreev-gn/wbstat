@@ -20,12 +20,12 @@ function Row({ label, actual, plan }: { label: string; actual: number; plan: num
 export function PlanFactCard({ data }: { data: PlanFact }) {
   return (
     <div className="card p-4">
-      <h3 className="mb-3 text-sm font-semibold">Plan vs Fact</h3>
+      <h3 className="mb-3 text-sm font-semibold">План и факт</h3>
       <div className="space-y-4">
-        <Row label="Month Revenue" actual={data.month_actual_revenue} plan={data.month_plan_revenue} />
-        <Row label="Month Profit" actual={data.month_actual_profit} plan={data.month_plan_profit} />
-        <Row label="YTD Revenue" actual={data.year_actual_revenue} plan={data.year_plan_revenue} />
-        <Row label="YTD Profit" actual={data.year_actual_profit} plan={data.year_plan_profit} />
+        <Row label="Выручка за месяц" actual={data.month_actual_revenue} plan={data.month_plan_revenue} />
+        <Row label="Прибыль за месяц" actual={data.month_actual_profit} plan={data.month_plan_profit} />
+        <Row label="Выручка YTD" actual={data.year_actual_revenue} plan={data.year_plan_revenue} />
+        <Row label="Прибыль YTD" actual={data.year_actual_profit} plan={data.year_plan_profit} />
       </div>
     </div>
   );

@@ -1,11 +1,11 @@
 {
-  "weekly_summary": "WoW revenue down 27.3%, profit down 16.9%. DRR holds at 15.5%.",
-  "key_risk": "1 SKU with frozen inventory is locking cash and needs immediate liquidation.",
-  "key_opportunity": "1 SKU are ready for controlled scale with healthy cover and DRR below threshold.",
+  "weekly_summary": "К прошлой неделе: выручка ниже на 27.3%, прибыль ниже на 16.9%. ДРР около 15.5%.",
+  "key_risk": "Неликвид по 1 SKU удерживает оборотные — нужна распродажа и стоп закупок.",
+  "key_opportunity": "1 SKU можно аккуратно масштабировать: нормальное покрытие и ДРР ниже порога.",
   "next_actions": [
-    "Increase budgets on Growth Queue by 10-15% with daily DRR cap.",
-    "Fix leakage SKUs: tighten bids, review pricing, and remove weak search clusters.",
-    "Launch dead stock clearance campaign and stop new purchase orders.",
-    "Approve replenishment plan only for SKUs with 15-45 day cover."
+    "В зоне роста поднять бюджет РК на 10–15% с дневным лимитом по ДРР.",
+    "По просадке маржи: сузить семантику, усилить минус-слова, пересмотреть цену.",
+    "По неликвиду: акция/комплект, новые закупки по артикулу не открывать.",
+    "Поставки только по SKU с покрытием 15–45 дн."
   ]
 }

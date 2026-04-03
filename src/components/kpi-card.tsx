@@ -73,7 +73,7 @@ export function KpiCard({
     const improved = flat ? null : compare.higherIsBetter ? d > 0 : d < 0;
     const trend = directionFromDelta(d, flat);
     const sign = d >= 0 ? "+" : "";
-    const text = `${sign}${d.toFixed(1)} п.п. к пред. 7 дн.`;
+    const text = `${sign}${d.toFixed(1)} п.п. к прошлым 7 дн.`;
     compareLine = { trend, good: improved ?? true, text };
   } else if (compare?.kind === "relative") {
     const d = compare.deltaPct;
@@ -81,7 +81,7 @@ export function KpiCard({
     const improved = flat ? null : compare.higherIsBetter ? d > 0 : d < 0;
     const trend = directionFromDelta(d, flat);
     const sign = d >= 0 ? "+" : "";
-    const text = `${sign}${d.toFixed(1)}% к пред. 7 дн.`;
+    const text = `${sign}${d.toFixed(1)}% к прошлым 7 дн.`;
     compareLine = { trend, good: improved ?? true, text };
   }
 

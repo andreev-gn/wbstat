@@ -14,14 +14,14 @@ export function TrendNotes({ daily }: { daily: DailyMetric[] }) {
   const adsDelta = delta(last7.reduce((a, b) => a + b.ads, 0), prev7.reduce((a, b) => a + b.ads, 0));
 
   const items = [
-    { label: "Sales WoW", value: salesDelta, good: salesDelta >= 0 },
-    { label: "Profit WoW", value: profitDelta, good: profitDelta >= 0 },
-    { label: "Ads WoW", value: adsDelta, good: adsDelta <= 0 },
+    { label: "Выручка WoW", value: salesDelta, good: salesDelta >= 0 },
+    { label: "Прибыль WoW", value: profitDelta, good: profitDelta >= 0 },
+    { label: "Реклама WoW", value: adsDelta, good: adsDelta <= 0 },
   ];
 
   return (
     <div className="card p-3">
-      <p className="mb-2 text-xs uppercase tracking-wide text-muted">Trend Notes</p>
+      <p className="mb-2 text-xs uppercase tracking-wide text-muted">К прошлой неделе (WoW)</p>
       <div className="grid gap-2 md:grid-cols-3">
         {items.map((i) => (
           <div key={i.label} className="rounded border border-border p-2 text-sm">

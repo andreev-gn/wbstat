@@ -38,17 +38,17 @@ export default function HomePage() {
   /** Сравнение «7 дн. vs пред. 7 дн.» имеет смысл только при полной истории */
   const hasPrevWeek = dailyMetrics.length >= 14;
 
-  const monthProgress = `${Math.round((planFact.month_actual_revenue / planFact.month_plan_revenue) * 100)}% of month plan`;
-  const ytdProgress = `${Math.round((planFact.year_actual_revenue / planFact.year_plan_revenue) * 100)}% of YTD plan`;
+  const monthProgress = `${Math.round((planFact.month_actual_revenue / planFact.month_plan_revenue) * 100)}% месячного плана (выручка)`;
+  const ytdProgress = `${Math.round((planFact.year_actual_revenue / planFact.year_plan_revenue) * 100)}% годового плана YTD (выручка)`;
 
   return (
     <main className="mx-auto max-w-[1680px] space-y-4 p-4 md:p-6">
       <header className="flex flex-wrap items-end justify-between gap-2">
         <div>
-          <p className="text-xs uppercase tracking-[0.12em] text-muted">Investor Demo</p>
+          <p className="text-xs uppercase tracking-[0.12em] text-muted">Демо · селлеры WB</p>
           <h1 className="text-2xl font-semibold tracking-tight">WB AI Control Tower</h1>
         </div>
-        <p className="text-sm text-muted">Decision-first cockpit for weekly operating control</p>
+        <p className="text-sm text-muted">Недельный срез: выручка, маржа, ДРР и остатки</p>
       </header>
 
       <section className="grid gap-3 md:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-8">
@@ -56,7 +56,7 @@ export default function HomePage() {
           label="Выручка 7д"
           value={last.sales}
           compare={hasPrevWeek ? { kind: "relative", deltaPct: revRel, higherIsBetter: true } : undefined}
-          secondary="Trailing 7 days"
+          secondary="Последние 7 дней"
         />
         <KpiCard
           label="Прибыль 7д"
@@ -78,7 +78,7 @@ export default function HomePage() {
           type="percent"
           tone={marginNow > 0 ? "good" : "warn"}
           compare={hasPrevWeek ? { kind: "pp", deltaPP: marginDeltaPp, higherIsBetter: true } : undefined}
-          secondary="Contribution margin"
+          secondary="Доля прибыли в выручке"
         />
         <KpiCard
           label="ДРР"
@@ -86,11 +86,17 @@ export default function HomePage() {
           type="percent"
           tone="accent"
           compare={hasPrevWeek ? { kind: "pp", deltaPP: drrDeltaPp, higherIsBetter: false } : undefined}
-          secondary="Ad spend / revenue"
+          secondary="Реклама к выручке (ДРР)"
         />
-        <KpiCard label="Риск по остаткам" value={summary.stock_risk_count} type="int" tone="warn" secondary={`${summary.slow_stock_count} slow / ${summary.dead_stock_count} dead`} />
-        <KpiCard label="План/факт месяца" value={monthProgress} type="text" secondary="Revenue progress" />
-        <KpiCard label="YTD прогресс" value={ytdProgress} type="text" secondary={`${summary.sku_count} active SKU`} />
+        <KpiCard
+          label="Риск по остаткам"
+          value={summary.stock_risk_count}
+          type="int"
+          tone="warn"
+          secondary={`${summary.slow_stock_count} залежалых / ${summary.dead_stock_count} неликвид`}
+        />
+        <KpiCard label="План/факт месяца" value={monthProgress} type="text" secondary="Выполнение плана по выручке" />
+        <KpiCard label="YTD прогресс" value={ytdProgress} type="text" secondary={`${summary.sku_count} активных SKU`} />
       </section>
 
       <section className="grid gap-4 xl:grid-cols-3">
@@ -113,40 +119,40 @@ export default function HomePage() {
 
       <section className="grid gap-4">
         <ActionTable
-          title="Growth Queue"
+          title="Зона роста (масштабирование РК)"
           rows={actionQueues.growth_queue}
           columns={[
             { key: "vendorCode", label: "SKU" },
-            { key: "title", label: "Title" },
-            { key: "revenue", label: "Revenue", numeric: true },
-            { key: "profit", label: "Profit", numeric: true },
-            { key: "stock_cover_days", label: "Cover Days", numeric: true },
-            { key: "recommendation", label: "Recommendation" },
+            { key: "title", label: "Название" },
+            { key: "revenue", label: "Выручка", numeric: true },
+            { key: "profit", label: "Прибыль", numeric: true },
+            { key: "stock_cover_days", label: "Покрытие, дн.", numeric: true },
+            { key: "recommendation", label: "Рекомендация" },
           ]}
         />
         <ActionTable
-          title="Profit Leakage Queue"
+          title="Просадка маржи и завышенный ДРР"
           rows={actionQueues.profit_leakage_queue}
           columns={[
             { key: "vendorCode", label: "SKU" },
-            { key: "title", label: "Title" },
-            { key: "revenue", label: "Revenue", numeric: true },
-            { key: "profit", label: "Profit", numeric: true },
-            { key: "ads", label: "Ads", numeric: true },
-            { key: "issue", label: "Issue" },
-            { key: "recommendation", label: "Recommendation" },
+            { key: "title", label: "Название" },
+            { key: "revenue", label: "Выручка", numeric: true },
+            { key: "profit", label: "Прибыль", numeric: true },
+            { key: "ads", label: "Реклама", numeric: true },
+            { key: "issue", label: "Проблема" },
+            { key: "recommendation", label: "Рекомендация" },
           ]}
         />
         <ActionTable
-          title="Dead Stock Queue"
+          title="Неликвид"
           rows={actionQueues.dead_stock_queue}
           columns={[
             { key: "vendorCode", label: "SKU" },
-            { key: "title", label: "Title" },
-            { key: "stock", label: "Stock", numeric: true },
-            { key: "sales", label: "Sales 30d", numeric: true },
-            { key: "issue", label: "Issue" },
-            { key: "recommendation", label: "Recommendation" },
+            { key: "title", label: "Название" },
+            { key: "stock", label: "Остаток, шт.", numeric: true },
+            { key: "sales", label: "Продажи 30 дн.", numeric: true },
+            { key: "issue", label: "Проблема" },
+            { key: "recommendation", label: "Рекомендация" },
           ]}
         />
       </section>
