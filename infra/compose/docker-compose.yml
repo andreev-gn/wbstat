@@ -1,0 +1,13 @@
+services:
+  web:
+    image: nginx:alpine
+    container_name: wbstat-web
+    restart: unless-stopped
+    volumes:
+      - ../../app/public:/usr/share/nginx/html:ro
+    networks:
+      - caddy-net
+
+networks:
+  caddy-net:
+    external: true
