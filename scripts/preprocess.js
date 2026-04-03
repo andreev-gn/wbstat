@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { parse } from "csv-parse/sync";
 
 const ROOT = process.cwd();
 const RAW = path.join(ROOT, "data/raw");
@@ -10,14 +11,21 @@ const PRICE_BY_CATEGORY = {
   Health: 950,
   Sport: 1400,
   Home: 1700,
+  Одежда: 2000,
 };
 
-function parseCsv(filePath) {
-  const raw = fs.readFileSync(filePath, "utf-8").trim();
-  return raw.split("\n").map((line) => line.split(",").map((c) => c.trim()));
+function parseDateUTC(dateStr) {
+  const [y, mo, d] = dateStr.split("-").map(Number);
+  return new Date(Date.UTC(y, mo - 1, d));
 }
 
-const toNum = (n) => Number(n || 0);
+const toNum = (n) => {
+  const x = Number(String(n ?? "")
+    .replace(/\s/g, "")
+    .replace(/\u00A0/g, "")
+    .replace(",", "."));
+  return Number.isFinite(x) ? x : 0;
+};
 const sum = (arr) => arr.reduce((a, b) => a + b, 0);
 
 function toUnits(sales, category) {
@@ -25,10 +33,9 @@ function toUnits(sales, category) {
   return Math.max(0, Math.round(sales / price));
 }
 
-const reportCsv = parseCsv(path.join(RAW, "Report.csv"));
-const reportHeader = reportCsv[0];
-const report = reportCsv.slice(1).map((row) => {
-  const rec = Object.fromEntries(reportHeader.map((h, i) => [h, row[i]]));
+const reportRaw = fs.readFileSync(path.join(RAW, "Report.csv"), "utf-8");
+const reportRows = parse(reportRaw, { columns: true, skip_empty_lines: true, relax_column_count: true });
+const report = reportRows.map((rec) => {
   const sales = toNum(rec.sales);
   return {
     date: rec.date,
@@ -43,22 +50,27 @@ const report = reportCsv.slice(1).map((row) => {
   };
 });
 
-const itogiCsv = parseCsv(path.join(RAW, "Itogi_nedeli.csv"));
-const itogiHeader = itogiCsv[0];
-const weeklyRows = itogiCsv.slice(1).map((row) => {
-  const rec = Object.fromEntries(itogiHeader.map((h, i) => [h, row[i]]));
-  return { week_start: rec.week_start, week_end: rec.week_end, revenue: toNum(rec.revenue), profit: toNum(rec.profit), ads: toNum(rec.ads) };
-});
+const itogiRaw = fs.readFileSync(path.join(RAW, "Itogi_nedeli.csv"), "utf-8");
+const weeklyRows = parse(itogiRaw, { columns: true, skip_empty_lines: true }).map((rec) => ({
+  week_start: rec.week_start,
+  week_end: rec.week_end,
+  revenue: toNum(rec.revenue),
+  profit: toNum(rec.profit),
+  ads: toNum(rec.ads),
+}));
 
 const dates = [...new Set(report.map((r) => r.date))].sort();
 const maxDate = dates[dates.length - 1];
-const maxDateObj = new Date(maxDate);
+const maxDateObj = parseDateUTC(maxDate);
 const weekWindow = new Date(maxDateObj);
-weekWindow.setDate(maxDateObj.getDate() - 6);
+weekWindow.setUTCDate(maxDateObj.getUTCDate() - 6);
 const monthKey = maxDate.slice(0, 7);
 const yearKey = maxDate.slice(0, 4);
 
-const last7 = report.filter((r) => new Date(r.date) >= weekWindow && new Date(r.date) <= maxDateObj);
+const last7 = report.filter((r) => {
+  const rd = parseDateUTC(r.date);
+  return rd >= weekWindow && rd <= maxDateObj;
+});
 const revenue7d = sum(last7.map((r) => r.sales));
 const profit7d = sum(last7.map((r) => r.profit));
 const ads7d = sum(last7.map((r) => r.ads));
@@ -67,8 +79,8 @@ const skuSet = [...new Set(report.map((r) => r.vendorCode))];
 const skuStats = skuSet.map((vendorCode) => {
   const rows = report.filter((r) => r.vendorCode === vendorCode);
   const last30cut = new Date(maxDateObj);
-  last30cut.setDate(maxDateObj.getDate() - 29);
-  const rows30 = rows.filter((r) => new Date(r.date) >= last30cut);
+  last30cut.setUTCDate(maxDateObj.getUTCDate() - 29);
+  const rows30 = rows.filter((r) => parseDateUTC(r.date) >= last30cut);
   const sales30 = sum(rows30.map((r) => r.sales));
   const units30 = sum(rows30.map((r) => r.units));
   const avgDailyUnits30 = units30 / 30;

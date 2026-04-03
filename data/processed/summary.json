@@ -1,19 +1,19 @@
 {
-  "revenue_7d": 577859,
-  "profit_7d": 25594,
-  "ads_7d": 89561,
-  "margin_pct": 4.4,
-  "drr_pct": 15.5,
-  "stock_risk_count": 0,
-  "dead_stock_count": 1,
-  "slow_stock_count": 6,
-  "sku_count": 8,
-  "loss_sku_count": 0,
-  "no_sales_sku_count": 1,
+  "revenue_7d": 31183371,
+  "profit_7d": 280367,
+  "ads_7d": 668685,
+  "margin_pct": 0.9,
+  "drr_pct": 2.1,
+  "stock_risk_count": 73,
+  "dead_stock_count": 16,
+  "slow_stock_count": 134,
+  "sku_count": 411,
+  "loss_sku_count": 273,
+  "no_sales_sku_count": 58,
   "stock_distribution": {
-    "lt_15": 0,
-    "d15_45": 0,
-    "d46_90": 2,
-    "gt_90": 6
+    "lt_15": 98,
+    "d15_45": 91,
+    "d46_90": 46,
+    "gt_90": 176
   }
 }

@@ -4,6 +4,7 @@ const CATEGORY_RU: Record<string, string> = {
   Health: "Здоровье",
   Sport: "Спорт",
   Home: "Дом",
+  Одежда: "Одежда",
 };
 
 export function categoryLabelRu(name: string) {

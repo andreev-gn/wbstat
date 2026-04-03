@@ -37,6 +37,20 @@ cd /srv/projects/wbstat/infra/compose
 docker compose up -d
 ```
 
+## Обновление данных из WEARA (pivot `Report.csv`)
+
+1. Положить файл экспорта в `data/csv/` (например существующий путь) или задать переменную `WEARA_REPORT` на абсолютный путь к CSV.
+2. На машине с Node 20:
+
+```bash
+cd /srv/projects/wbstat
+npm run data:weara
+```
+
+Скрипт `scripts/weara-to-raw.mjs` собирает длинный `data/raw/Report.csv` и недельный `data/raw/Itogi_nedeli.csv`, затем `scripts/preprocess.js` пересчитывает `data/processed/*.json`.
+
+3. Пересобрать и поднять контейнер (см. раздел «Продакшен» выше).
+
 ## Перезагрузка Caddy после правок Caddyfile
 
 ```bash
