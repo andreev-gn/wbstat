@@ -47,4 +47,16 @@ Use this exact instruction for your server-side agent:
 - Ничего не менять в бизнес-логике и UI.
 - Не добавлять backend/DB.
 - Если падает сборка, сначала показать ошибку, затем предложить минимальный фикс.
+
+---
+
+## Альтернатива: сервер agnexhub (Docker + Caddy)
+
+На **этом** хосте уже есть Docker и Caddy с Let's Encrypt. Деплой делается **без** установки nginx/PM2/Certbot на Ubuntu вручную:
+
+- образ: `Dockerfile` в корне проекта (Node 20, `npm run preprocess`, `next build`, `next start` через `standalone`);
+- `infra/compose/docker-compose.yml` — сервис `web`, сеть `caddy-net`;
+- в Caddy: `reverse_proxy wbstat-web:3000` для `wbstat.genaproject.ru`.
+
+Подробности: `docs/RUNBOOK.md`.
 ---

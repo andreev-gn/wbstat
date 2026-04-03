@@ -1,10 +1,15 @@
 services:
   web:
-    image: nginx:alpine
+    build:
+      context: ../..
+      dockerfile: Dockerfile
+    image: wbstat-web:prod
     container_name: wbstat-web
     restart: unless-stopped
-    volumes:
-      - ../../app/public:/usr/share/nginx/html:ro
+    environment:
+      NODE_ENV: production
+      PORT: "3000"
+      HOSTNAME: "0.0.0.0"
     networks:
       - caddy-net
 
