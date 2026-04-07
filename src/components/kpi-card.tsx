@@ -73,7 +73,7 @@ export function KpiCard({
     const improved = flat ? null : compare.higherIsBetter ? d > 0 : d < 0;
     const trend = directionFromDelta(d, flat);
     const sign = d >= 0 ? "+" : "";
-    const text = `${sign}${d.toFixed(1)} п.п. к прошлым 7 дн.`;
+    const text = `${sign}${d.toFixed(1)} п.п. · пред. 7 дн.`;
     compareLine = { trend, good: improved ?? true, text };
   } else if (compare?.kind === "relative") {
     const d = compare.deltaPct;
@@ -81,7 +81,7 @@ export function KpiCard({
     const improved = flat ? null : compare.higherIsBetter ? d > 0 : d < 0;
     const trend = directionFromDelta(d, flat);
     const sign = d >= 0 ? "+" : "";
-    const text = `${sign}${d.toFixed(1)}% к прошлым 7 дн.`;
+    const text = `${sign}${d.toFixed(1)}% · пред. 7 дн.`;
     compareLine = { trend, good: improved ?? true, text };
   }
 
@@ -95,13 +95,16 @@ export function KpiCard({
         : "text-rose-600";
 
   return (
-    <div className="card p-4">
+    <div className="card min-w-0 p-4">
       <p className="text-xs uppercase tracking-wide text-muted">{label}</p>
       <p className={`kpi-value mt-2 ${className}`}>{formatted}</p>
       {compareLine ? (
-        <p className={`mt-1 flex items-center gap-1 text-xs font-medium ${compareColor}`}>
-          <Icon className="h-3.5 w-3.5 shrink-0" aria-hidden />
-          <span>{compareLine.text}</span>
+        <p
+          className={`mt-1 flex min-w-0 items-center gap-1 text-[11px] font-medium leading-tight ${compareColor}`}
+          title="Сравнение с предыдущими 7 днями (неделя к неделе)"
+        >
+          <Icon className="h-3 w-3 shrink-0" aria-hidden />
+          <span className="min-w-0">{compareLine.text}</span>
         </p>
       ) : null}
       {secondary ? <p className="mt-1 text-xs text-muted">{secondary}</p> : null}

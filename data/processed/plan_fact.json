@@ -1,10 +1,18 @@
 {
-  "month_plan_revenue": 5322205,
+  "month_plan_revenue": 250000000,
   "month_actual_revenue": 4751969,
-  "month_plan_profit": 85335,
+  "month_plan_profit": 4396093,
   "month_actual_profit": 74855,
-  "year_plan_revenue": 165157356,
+  "year_plan_revenue": 3000000000,
   "year_actual_revenue": 137631130,
-  "year_plan_profit": 2855785,
-  "year_actual_profit": 2420157
+  "year_plan_profit": 52753116,
+  "year_actual_profit": 2420157,
+  "month_plan_revenue_to_date": 8333333,
+  "year_plan_revenue_to_date": 747945205,
+  "month_plan_profit_to_date": 146536,
+  "year_plan_profit_to_date": 13152147,
+  "month_revenue_pace_pct": 57,
+  "year_revenue_pace_pct": 18,
+  "month_profit_pace_pct": 51,
+  "year_profit_pace_pct": 18
 }

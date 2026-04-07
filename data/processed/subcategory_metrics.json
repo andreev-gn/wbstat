@@ -1,0 +1,184 @@
+[
+  {
+    "category": "Джемпер",
+    "revenue": 32503355,
+    "profit": 1686468,
+    "ads": 393710,
+    "sku_count": 19
+  },
+  {
+    "category": "Костюм",
+    "revenue": 23228289,
+    "profit": 670904,
+    "ads": 558847,
+    "sku_count": 15
+  },
+  {
+    "category": "Худи",
+    "revenue": 26131731,
+    "profit": 324576,
+    "ads": 538569,
+    "sku_count": 21
+  },
+  {
+    "category": "Блузка",
+    "revenue": 9775122,
+    "profit": 80244,
+    "ads": 316753,
+    "sku_count": 44
+  },
+  {
+    "category": "Рубашка",
+    "revenue": 9631735,
+    "profit": 46482,
+    "ads": 378475,
+    "sku_count": 34
+  },
+  {
+    "category": "Кардиган",
+    "revenue": 6039077,
+    "profit": 271,
+    "ads": 113413,
+    "sku_count": 19
+  },
+  {
+    "category": "Платье",
+    "revenue": 14635871,
+    "profit": -245179,
+    "ads": 53861,
+    "sku_count": 50
+  },
+  {
+    "category": "Свитер",
+    "revenue": 6828930,
+    "profit": 34217,
+    "ads": 26441,
+    "sku_count": 58
+  },
+  {
+    "category": "Брюки",
+    "revenue": 2124401,
+    "profit": 43792,
+    "ads": 5223,
+    "sku_count": 15
+  },
+  {
+    "category": "Футболка",
+    "revenue": 3078087,
+    "profit": -78500,
+    "ads": 95423,
+    "sku_count": 86
+  },
+  {
+    "category": "Штаны",
+    "revenue": 529036,
+    "profit": -7049,
+    "ads": 816,
+    "sku_count": 8
+  },
+  {
+    "category": "Пуховик",
+    "revenue": 24840,
+    "profit": 7032,
+    "ads": 0,
+    "sku_count": 1
+  },
+  {
+    "category": "Комбинезон",
+    "revenue": 1349737,
+    "profit": -71784,
+    "ads": 0,
+    "sku_count": 9
+  },
+  {
+    "category": "Джинсы",
+    "revenue": 186014,
+    "profit": 8605,
+    "ads": 0,
+    "sku_count": 4
+  },
+  {
+    "category": "Рашгард",
+    "revenue": 797382,
+    "profit": -1057,
+    "ads": 5948,
+    "sku_count": 3
+  },
+  {
+    "category": "Джоггеры",
+    "revenue": 33589,
+    "profit": -1944,
+    "ads": 0,
+    "sku_count": 1
+  },
+  {
+    "category": "Пиджак",
+    "revenue": 48467,
+    "profit": -969,
+    "ads": 0,
+    "sku_count": 2
+  },
+  {
+    "category": "Топ",
+    "revenue": 30325,
+    "profit": -4756,
+    "ads": 0,
+    "sku_count": 6
+  },
+  {
+    "category": "Свитшот",
+    "revenue": 44489,
+    "profit": -3491,
+    "ads": 1000,
+    "sku_count": 3
+  },
+  {
+    "category": "Куртка",
+    "revenue": 0,
+    "profit": 0,
+    "ads": 0,
+    "sku_count": 1
+  },
+  {
+    "category": "Пальто",
+    "revenue": 10368,
+    "profit": 2833,
+    "ads": 0,
+    "sku_count": 1
+  },
+  {
+    "category": "Кофта",
+    "revenue": 560961,
+    "profit": -64762,
+    "ads": 0,
+    "sku_count": 3
+  },
+  {
+    "category": "Туника",
+    "revenue": 7464,
+    "profit": 533,
+    "ads": 0,
+    "sku_count": 1
+  },
+  {
+    "category": "Толстовка",
+    "revenue": 10560,
+    "profit": -3183,
+    "ads": 0,
+    "sku_count": 5
+  },
+  {
+    "category": "Лонгслив",
+    "revenue": 17256,
+    "profit": -1645,
+    "ads": 0,
+    "sku_count": 1
+  },
+  {
+    "category": "Шорты",
+    "revenue": 4044,
+    "profit": -1481,
+    "ads": 0,
+    "sku_count": 1
+  }
+]

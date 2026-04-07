@@ -1,4 +1,5 @@
 import type { DailyMetric } from "@/types/dashboard";
+import { formatWeekRangeAxisShort, formatWeekRangeTooltipLong } from "@/lib/chart-date-labels";
 
 /** Понедельник календарной недели (пн–вс) для даты YYYY-MM-DD, расчёт в UTC для стабильности. */
 export function mondayOfWeek(dateStr: string): string {
@@ -11,10 +12,20 @@ export function mondayOfWeek(dateStr: string): string {
   return dt.toISOString().slice(0, 10);
 }
 
+/** Воскресенье той же календарной недели (пн–вс), UTC. */
+export function sundayOfWeekFromMonday(weekStartMonday: string): string {
+  const [y, mo, d] = weekStartMonday.split("-").map(Number);
+  const t = Date.UTC(y, mo - 1, d + 6);
+  return new Date(t).toISOString().slice(0, 10);
+}
+
 export type WeeklyBucket = {
   weekStart: string;
-  /** Подпись на оси, напр. 01-13 */
+  weekEnd: string;
+  /** Короткий диапазон на оси X, напр. 09–15.03 */
   label: string;
+  /** Развёрнутая подпись периода для тултипа */
+  tooltipLabel: string;
   sales: number;
   profit: number;
   ads: number;
@@ -33,9 +44,14 @@ export function aggregateByWeek(rows: DailyMetric[]): WeeklyBucket[] {
   }
   return [...map.entries()]
     .sort((a, b) => a[0].localeCompare(b[0]))
-    .map(([weekStart, v]) => ({
-      weekStart,
-      label: weekStart.slice(5),
-      ...v,
-    }));
+    .map(([weekStart, v]) => {
+      const weekEnd = sundayOfWeekFromMonday(weekStart);
+      return {
+        weekStart,
+        weekEnd,
+        label: formatWeekRangeAxisShort(weekStart, weekEnd),
+        tooltipLabel: formatWeekRangeTooltipLong(weekStart, weekEnd),
+        ...v,
+      };
+    });
 }
